@@ -1,0 +1,56 @@
+1. Initialize game:
+    - create the html structure for main menu with three different buttons: New Game, How to Play and High Scores.
+    - style the main menu using css
+    - define all the js functions to control the button clicks 
+
+2. Main menu:
+    - display main menu when opening the game
+    - listen for button clicks:
+        - if "New Game" button is clicked then go to level 1 page
+        - if "How to Play" button is clicked then display the instructions 
+        - if "High Scores" button is clicked then display high scores
+
+3. Level 1:
+    - create the html structure for the game board 
+    - style the game board using css
+    - display the game board with a group of balloons in the middle and monkey below them
+    - display an arrow with the monkey for aiming and controlling direction
+    - display bottom buttons on level 1 screen with:
+        - image/number of available darts
+        - target amount of balloons to hit to pass the level
+        - current score 
+        - button to be able to return back to the main menu 
+
+4. Monkey's dart/arrow:
+    - listen for mouse hover over monkey's arrow to control direction dart is thrown
+    - listen for mouse click and hold to control power of dart throw 
+    - power of dart throw is based on the duration of click and hold
+
+5. Track available darts:
+    - display image/number of available darts on bottom
+    -  decrease the count of darts each time the monkey throws a dart 
+    
+6. Hitting the balloons:
+    - remove the hit balloons from group
+
+7. Tracking the score:
+    - increase the score each time a balloon is hit 
+    - display updated score on bottom
+
+8. Check if level is completed:
+    - compare the number of hit balloons to the target amount
+    - IF target amount is reached:
+        - display "Level Complete!" message 
+    - IF target amount is not reached and darts have been used:
+        - display "Try Again!" message
+
+9. Button to return back to Main Menu:
+    - listen for button click to return back to the main menu
+    - redirect back to the main menu screen 
+
+10. Background music and sound effects:
+    - make sure background music is playing throughout the game
+    - add some sound effects for when the dart is thrown, the balloons popping, and completing or failing the level
+    
+   (maybe make a separate count for number of balloons popped next to the target balloons so that the current score is to keep track of scores as you progress levels)
+
