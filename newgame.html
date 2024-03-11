@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Game</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <div class="level-1">
+        <h1>Level 1</h1>
+        <!-- game board -->
+        <div class="game-board">
+            <!-- monkey -->
+            <div class="monkey" id="monkey"></div>
+            <!-- balloons/balloons popped in js -->
+            <div class="balloons"></div>
+            <!-- darts -->
+            <div class="darts" id="dart"></div>
+            <!-- arrow -->
+            <div class="arrow"></div>
+            <!-- target score to pass the level -->
+            <div class="target">Target: 50 balloons</div>
+            <!-- current score -->
+            <div class="current-score">Current Score: 0 balloons</div>
+            <!-- check level completion -->
+            <div class="level-complete"></div>
+            <div class="balloon balloon1"></div>
+            <div class="balloon balloon2"></div>
+            <div class="balloon balloon3"></div>
+            <div class="balloon balloon4"></div>
+            <div class="balloon balloon5"></div>
+            <div class="balloon balloon6"></div>
+            <div class="balloon balloon7"></div>
+            <div class="balloon balloon8"></div>
+            <div class="balloon balloon9"></div>
+            <div class="balloon balloon10"></div>
+            <div class="balloon balloon11"></div>
+            <div class="balloon balloon12"></div>
+            <!-- trajectory preview line -->
+            <div class="trajectory-preview" id="trajectoryPreview"></div>
+            <!-- buttons -->
+            <div class="buttons-level-1">
+                <!-- reset game button -->
+                <button onclick="resetGame()">Reset Game</button>
+                <!-- Back to main menu button -->
+                <button onclick="backToMainMenu()">Back to Main Menu</button>
+            </div>
+        </div>
+</body>
+
+</html>

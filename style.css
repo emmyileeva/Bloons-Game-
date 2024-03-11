@@ -1,2 +1,246 @@
+body {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background-color: skyblue;
+    /* background-image: url('https://i.pinimg.com/564x/d6/72/92/d67292a7f73da0c769be979d1627d688.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center; */
+}
+
+.main-menu {
+    margin-top: 100px;
+    text-align: center;
+}
+
+.game-header {
+    background-color: rgba(0, 0, 0, 0.2);
+    background-image: url(''); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: white;
+    font-size: 30px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+button {
+    padding: 15px 30px;
+    margin: 10px 0;
+    font-size: 30px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 60px;
+}
+
+button:hover {
+    background-color: #CCFFCC;
+}
+
+.buttons a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.how-to-play {
+    margin-top: 100px;
+    text-align: center;
+    font-size: 60px;
+    color: white;
+}
+
+ul {
+    list-style-type: disc;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+}
+
+li {
+    font-size: 20px;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.main-menu-button1 {
+    margin-top: 20px;
+}
+
+.level-1 {
+    text-align: center;
+    font-size: 30px;
+    color: white;
+}
+
+.level-1 .game-board {
+    /* background-image: url('https://i.pinimg.com/564x/d6/72/92/d67292a7f73da0c769be979d1627d688.jpg'); */
+    /* background-image: url('https://st2.depositphotos.com/3759469/6798/v/450/depositphotos_67982979-stock-illustration-horizontally-seamless-game-background.jpg'); */
+    background-color: wheat;
+    /* background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover; */
+    margin: 0 auto;
+    width: 80%;
+    height: 500px;
+    padding: 40px;
+    border-radius: 10px; 
+}
+
+.target {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+}
+
+.current-score {
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+}
+
+.buttons-level-1 {
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+} 
+
+.balloon {
+    width: 50px;
+    height: 60px;
+    border-radius: 60% 60% 70% 70%;
+    position: absolute;
+    margin: 0 25%;
+}
+
+.balloon1 {
+    top: 20%;
+    left: 20%;
+    background-color: red;
+    /* background-image: url('https://postimg.cc/Lhxg4KLG'); */
+}
+.balloon2 {
+    top: 20%;
+    left: 25%;
+    background-color: green;
+}
+.balloon3 {
+    top: 20%;
+    left: 30%;
+    background-color: blue;
+}
+.balloon4 {
+    top: 20%;
+    left: 35%;
+    background-color: yellow;
+}
+.balloon5 {
+    top: 20%;
+    left: 40%;
+    background-color: purple;
+}
+.balloon6 {
+    top: 20%;
+    left: 45%;
+    background-color: pink;
+}
+.balloon7 {
+    top: 30%;
+    left: 20%;
+    background-color: turquoise;
+}
+.balloon8 {
+    top:30%;
+    left: 25%;
+    background-color: lightblue;
+}
+.balloon9 {
+    top: 30%;
+    left: 30%;
+    background-color: orange;
+}
+.balloon10 {
+    top: 30%;
+    left: 35%;
+    background-color: lightgreen;
+}
+.balloon11 {
+    top: 30%;
+    left: 40%;
+    background-color: lightpink;
+}
+.balloon12 {
+    top: 30%;
+    left: 45%;
+    background-color: lightcoral;
+}
+
+/* before element to create a highlight and an after element to make the balloon string
+.balloon::before {
+    display: block;
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.balloon::after {
+    display: block;
+    width: 2px;
+    height: 15px;
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+} */
+
+#monkey {
+    width: 80px;
+    height: 100px;
+    background-color: brown;
+    border-radius: 50%;
+    top: 550px;
+    left: 300px;
+    position: absolute;
+    cursor: pointer;
+}
+
+#dart {
+    width: 5px;
+    height: 70px;
+    background-color: black;
+    position: absolute;
+    top: 510px;
+    left: 380px;
+    cursor: pointer;
+    visibility: hidden;
+}
+
+#trajectoryPreview {
+    position: absolute;
+    background-color: red;
+    width: 1px;
+    height: 100px;
+    transform-origin: top left;
+    display: none;
+
+}
 
 
