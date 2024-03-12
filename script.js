@@ -53,7 +53,8 @@ document.addEventListener("DOMContentLoaded", function () {
   // function to reset game
   function resetGame() {
     currentScore = 0;
-    balloonsPopped = 0;
+      balloonsPopped = 0;
+      dartsShot = 0;
     updateCurrentScore();
     updateBalloonsPopped();
     startGame();
