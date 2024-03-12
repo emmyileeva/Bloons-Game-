@@ -79,32 +79,14 @@ document.addEventListener("DOMContentLoaded", function () {
       dart.style.top = monkeyPosition.top + "px";
 
       const moveDart = () => {
-        dartPower += 5; //adjust the dart power
-        const trajectoryPreviewPosition =
-          trajectoryPreview.getBoundingClientRect();
-
+        const trajectoryPreviewPosition = trajectoryPreview.getBoundingClientRect();
         // Calculate the angle between the monkey and the trajectory preview
-        const angle =
-          Math.atan2(
-            trajectoryPreviewPosition.top - monkeyPosition.top,
-            trajectoryPreviewPosition.left - monkeyPosition.left
-          ) *
-          (180 / Math.PI);
+        const angle = Math.atan2(trajectoryPreviewPosition.top - monkeyPosition.top, trajectoryPreviewPosition.left - monkeyPosition.left) * (180 / Math.PI);
         const radianAngle = angle * (Math.PI / 180); // Convert angle to radians
         const deltaXActual = dartPower * Math.cos(radianAngle); // calculate horizontal
         const deltaYActual = dartPower * Math.sin(radianAngle); // vertical
-        dart.style.left =
-          monkeyPosition.left +
-          monkeyPosition.width / 2 +
-          deltaXActual -
-          dartPosition.width / 2 +
-          "px";
-        dart.style.top =
-          monkeyPosition.top +
-          monkeyPosition.height / 2 +
-          deltaYActual -
-          dartPosition.height / 2 +
-          "px";
+        dart.style.left = parseFloat(dart.style.left) + deltaXActual + "px";
+        dart.style.top = parseFloat(dart.style.top) + deltaYActual + "px";
         // check to see if dart has reached the max distance
         if (
           dartPower >=
@@ -114,9 +96,10 @@ document.addEventListener("DOMContentLoaded", function () {
           dartIsVisible = false; // reset
           dart.style.visibility = "hidden"; // hide dart
         }
+        dartPower += 2; //adjust the dart power
       };
       moveDart();
-      dartInterval = setInterval(moveDart, 20);
+      dartInterval = setInterval(moveDart, 30);
       darts();
     }
   }
