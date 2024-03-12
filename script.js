@@ -10,12 +10,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const dart = document.getElementById("dart");
   const trajectoryPreview = document.getElementById("trajectoryPreview");
 
-  // dart/mouse variables
-  let mouseX, mouseY;
+  // dart variables
   let dartIsVisible = false;
   let dartInterval;
   let dartsShot = 0;
-  const maxDarts = 5;
+  const maxDarts = 10;
   let dartPower = 0;
 
   // function to start game
@@ -27,11 +26,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // function for shooting darts
   function darts() {
-    // go up score by 1 for each balloon popped
-    currentScore++;
-    balloonsPopped++;
-    updateCurrentScore();
-    checkLevelComplete();
+    if (!dartIsVisible) {
+      balloonsPopped++;
+      updateCurrentScore();
+      checkLevelComplete();
+    }
   }
 
   //   function to update current score
@@ -45,18 +44,31 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelector(".balloons").textContent =
       "Balloons Popped: " + balloonsPopped + "/" + targetBalloons;
   }
+  // Select the button element by its ID
+  const resetGameButton = document.getElementById("resetGame");
+
+  // Add an event listener to the button
+  resetGameButton.addEventListener("click", resetGame);
 
   // function to reset game
   function resetGame() {
     currentScore = 0;
     balloonsPopped = 0;
     updateCurrentScore();
+    updateBalloonsPopped();
     startGame();
+    // Show all balloons again
+    const balloons = document.querySelectorAll(".balloon");
+    balloons.forEach((balloon) => {
+      balloon.style.visibility = "visible";
+    });
+    // hide the balloons popped message
+    document.querySelector(".balloons").textContent = "";
   }
 
   // function to check if level was completed
   function checkLevelComplete() {
-    if (balloonsPopped >= targetBalloons) {
+    if (balloonsPopped === targetBalloons) {
       alert("Level Complete!");
       resetGame();
     }
@@ -106,7 +118,7 @@ document.addEventListener("DOMContentLoaded", function () {
         dartPower += 2; //adjust the dart power
       };
       moveDart();
-      dartInterval = setInterval(moveDart, 30);
+      dartInterval = setInterval(moveDart, 60);
       darts();
     }
   }
@@ -128,12 +140,12 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // check for collision
-  function isColliding(element1, element2) {
+  function isColliding(dart1, balloon1) {
     return !(
-      element1.right < element2.left ||
-      element1.left > element2.right ||
-      element1.bottom < element2.top ||
-      element1.top > element2.bottom
+      dart1.right < balloon1.left ||
+      dart1.left > balloon1.right ||
+      dart1.bottom < balloon1.top ||
+      dart1.top > balloon1.bottom
     );
   }
 
@@ -208,8 +220,9 @@ document.addEventListener("DOMContentLoaded", function () {
           dartsShot++; // Increment the number of darts shot
         } else {
           clearInterval(dartInterval); // Stop dart throw loop if max darts reached
+          dartInterval = undefined; // reset the dart interval
         }
-      }, 100); // Start dart throw loop
+      }, 1000); // Start dart throw loop
     }
   });
 

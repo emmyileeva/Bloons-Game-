@@ -115,13 +115,13 @@ li {
 
 .balloon1 {
     top: 20%;
-    left: 20%;
+    left: 10%;
     background-color: red;
 }
 
 .balloon2 {
     top: 20%;
-    left: 25%;
+    left: 20%;
     background-color: green;
 }
 .balloon3 {
@@ -131,47 +131,47 @@ li {
 }
 .balloon4 {
     top: 20%;
-    left: 35%;
+    left: 40%;
     background-color: yellow;
 }
 .balloon5 {
-    top: 20%;
-    left: 40%;
+    top: 30%;
+    left: 10%;
     background-color: purple;
 }
 .balloon6 {
-    top: 20%;
-    left: 45%;
+    top: 30%;
+    left: 20%;
     background-color: pink;
 }
 .balloon7 {
     top: 30%;
-    left: 20%;
+    left: 30%;
     background-color: turquoise;
 }
 .balloon8 {
-    top:30%;
-    left: 25%;
+    top: 30%;
+    left: 40%;
     background-color: lightblue;
 }
 .balloon9 {
-    top: 30%;
-    left: 30%;
+    top: 40%;
+    left: 10%;
     background-color: orange;
 }
 .balloon10 {
-    top: 30%;
-    left: 35%;
+    top: 40%;
+    left: 20%;
     background-color: lightgreen;
 }
 .balloon11 {
-    top: 30%;
-    left: 40%;
+    top: 40%;
+    left: 30%;
     background-color: lightpink;
 }
 .balloon12 {
-    top: 30%;
-    left: 45%;
+    top: 40%;
+    left: 40%;
     background-color: lightcoral;
 }
 
