@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let dartIsVisible = false;
   let dartInterval;
   let dartsShot = 0;
-  const maxDarts = 10;
+  const maxDarts = 5;
   let dartPower = 0;
 
   // function to start game
