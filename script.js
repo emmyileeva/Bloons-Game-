@@ -1,160 +1,206 @@
-// Variable to store game state
-let currentScore = 0;
-let balloonsPopped = 0;
-const targetBalloons = 12; // Update this if you want to adjust the target goal
+// // Initialize game
+document.addEventListener("DOMContentLoaded", function () {
+  // Variables to store game state
+  let currentScore = 0;
+  let balloonsPopped = 0;
+  const targetBalloons = 12;
 
-// cached DOM element
-const monkey = document.getElementById("monkey");
-const dart = document.getElementById("dart");
-const trajectoryPreview = document.getElementById("trajectoryPreview");
+  // cached DOM element
+  const monkey = document.getElementById("monkey");
+  const dart = document.getElementById("dart");
+  const trajectoryPreview = document.getElementById("trajectoryPreview");
 
-// Initialize game
-document.addEventListener("DOMContentLoaded", startGame);
+  // dart/mouse variables
+  let mouseX, mouseY;
+  let dartIsVisible = false;
+  let dartInterval;
+  let dartsShot = 0;
+  const maxDarts = 10;
+  let dartPower = 0;
 
-// Event listener for mouse over the monkey
-monkey.addEventListener("mouseover", () => {
-  trajectoryPreview.style.display = "block";
-});
-
-// Event listener for mouse move over the monkey
-monkey.addEventListener("mousemove", (event) => {
-  const monkeyPosition = monkey.getBoundingClientRect();
-  const angle =
-    Math.atan2(
-      event.clientY - monkeyPosition.top - monkeyPosition.height / 2,
-      event.clientX - monkeyPosition.left - monkeyPosition.width / 2
-    ) *
-    (180 / Math.PI);
-  trajectoryPreview.style.transform = `rotate(${angle}deg)`;
-});
-
-// Event listener for mouse leave the monkey
-monkey.addEventListener("mouseleave", () => {
-  trajectoryPreview.style.display = "none";
-});
-
-// Event listener for shooting the dart on mouse click
-monkey.addEventListener("click", (event) => {
-  const angle =
-    Math.atan2(
-      event.clientY -
-        monkey.getBoundingClientRect().top -
-        monkey.getBoundingClientRect().height / 2,
-      event.clientX -
-        monkey.getBoundingClientRect().left -
-        monkey.getBoundingClientRect().width / 2
-    ) *
-    (180 / Math.PI);
-  shootDart(angle);
-});
-
-// Event listener for shooting the dart on mouse down
-monkey.addEventListener("mousedown", (event) => {
-  const angle =
-    Math.atan2(
-      event.clientY -
-        monkey.getBoundingClientRect().top -
-        monkey.getBoundingClientRect().height / 2,
-      event.clientX -
-        monkey.getBoundingClientRect().left -
-        monkey.getBoundingClientRect().width / 2
-    ) *
-    (180 / Math.PI);
-  shootDart(angle);
-});
-
-// Event listener for mouse up to stop shooting the dart
-monkey.addEventListener("mouseup", () => {
-  clearInterval(dartInterval);
-});
-
-// Function to start game
-function startGame() {
-  currentScore = 0;
-  balloonsPopped = 0;
-  updateScoreDisplays();
-}
-
-// Function to update score displays
-function updateScoreDisplays() {
-  document.querySelector(".current-score").textContent =
-    "Current Score: " + currentScore + " balloons";
-  document.querySelector(".balloons").textContent =
-    "Balloons Popped: " + balloonsPopped + "/" + targetBalloons;
-}
-
-// Function to reset game
-function resetGame() {
-  startGame();
-}
-
-// function for back to main menu button
-function backToMainMenu() {
-  // redirection to main menu
-  window.location.href = "index.html";
-}
-
-// Function to check if level was completed
-function checkLevelComplete() {
-  if (balloonsPopped >= targetBalloons) {
-    alert("Level Complete!");
+  // function to start game
+  function startGame() {
+    currentScore = 0;
+    balloonsPopped = 0;
+    updateCurrentScore();
   }
-}
 
-// Function to shoot the dart
-function shootDart(angle) {
-  if (!dartIsVisible && dartsShot < maxDarts) {
-    dartIsVisible = true;
-    dart.style.visibility = "visible";
-    const dartPosition = dart.getBoundingClientRect();
-    const trajectoryPreviewPosition = trajectoryPreview.getBoundingClientRect();
-    const offsetLeft = trajectoryPreview.offsetLeft;
-    const offsetTop = trajectoryPreview.offsetTop;
-    const radianAngle = angle * (Math.PI / 180);
+  // function for shooting darts
+  function darts() {
+    // go up score by 1 for each balloon popped
+    currentScore++;
+    balloonsPopped++;
+    updateCurrentScore();
+    checkLevelComplete();
+  }
 
-    dart.style.left =
-      offsetLeft +
-      trajectoryPreviewPosition.width / 2 -
-      dartPosition.width / 2 +
-      "px";
-    dart.style.top =
-      offsetTop +
-      trajectoryPreviewPosition.height / 2 -
-      dartPosition.height / 2 +
-      "px";
+  //   function to update current score
+  function updateCurrentScore() {
+    document.querySelector(".current-score").textContent =
+      "Current Score: " + currentScore + "balloons";
+  }
 
-    let dartPower = 0;
-    dartInterval = setInterval(() => {
-      dartPower += 4;
-      const deltaX = dartPower * Math.cos(radianAngle);
-      const deltaY = dartPower * Math.sin(radianAngle);
+  //   function to update the balloons popped
+  function updateBalloonsPopped() {
+    document.querySelector(".balloons").textContent =
+      "Balloons Popped: " + balloonsPopped + "/" + targetBalloons;
+  }
+
+  // function to reset game
+  function resetGame() {
+    currentScore = 0;
+    balloonsPopped = 0;
+    updateCurrentScore();
+    startGame();
+  }
+
+  // function to check if level was completed
+  function checkLevelComplete() {
+    if (balloonsPopped >= targetBalloons) {
+      alert("Level Complete!");
+      resetGame();
+    }
+  }
+
+  // Function to shoot dart
+  function shootDart() {
+    dartPower = 0; // reset the dart power
+    if (!dartIsVisible) {
+      // check if dart is visible
+      dartIsVisible = true;
+      dart.style.visibility = "visible";
+      const monkeyPosition = monkey.getBoundingClientRect();
+      const dartPosition = dart.getBoundingClientRect();
       dart.style.left =
-        offsetLeft +
-        trajectoryPreviewPosition.width / 2 +
-        deltaX -
+        monkeyPosition.left +
+        monkeyPosition.width / 2 -
         dartPosition.width / 2 +
         "px";
-      dart.style.top =
-        offsetTop +
-        trajectoryPreviewPosition.height / 2 +
-        deltaY -
-        dartPosition.height / 2 +
-        "px";
-      if (
-        dartPower >=
-        Math.max(
-          trajectoryPreviewPosition.width,
-          trajectoryPreviewPosition.height
-        ) /
-          2
-      ) {
-        clearInterval(dartInterval);
-        dartIsVisible = false;
-        dart.style.visibility = "hidden";
-        dartsShot++;
-      }
-    }, 30);
+      dart.style.top = monkeyPosition.top + "px";
+
+      const moveDart = () => {
+        dartPower += 5; //adjust the dart power
+        const trajectoryPreviewPosition =
+          trajectoryPreview.getBoundingClientRect();
+
+        // Calculate the angle between the monkey and the trajectory preview
+        const angle =
+          Math.atan2(
+            trajectoryPreviewPosition.top - monkeyPosition.top,
+            trajectoryPreviewPosition.left - monkeyPosition.left
+          ) *
+          (180 / Math.PI);
+        const radianAngle = angle * (Math.PI / 180); // Convert angle to radians
+        const deltaXActual = dartPower * Math.cos(radianAngle); // calculate horizontal
+        const deltaYActual = dartPower * Math.sin(radianAngle); // vertical
+        dart.style.left =
+          monkeyPosition.left +
+          monkeyPosition.width / 2 +
+          deltaXActual -
+          dartPosition.width / 2 +
+          "px";
+        dart.style.top =
+          monkeyPosition.top +
+          monkeyPosition.height / 2 +
+          deltaYActual -
+          dartPosition.height / 2 +
+          "px";
+        // check to see if dart has reached the max distance
+        if (
+          dartPower >=
+          Math.max(monkeyPosition.width, monkeyPosition.height) / 2
+        ) {
+          clearInterval(dartInterval);
+          dartIsVisible = false; // reset
+          dart.style.visibility = "hidden"; // hide dart
+        }
+      };
+      moveDart();
+      dartInterval = setInterval(moveDart, 20);
+      darts();
+    }
   }
-}
 
+  // Event listener for mouse hover on the monkey
+  monkey.addEventListener("mouseover", () => {
+    // Show the trajectory preview line
+    trajectoryPreview.style.display = "block";
+  });
 
+  // Event listener for mouse move on the monkey
+  monkey.addEventListener("mousemove", (event) => {
+    // Calculate the position of the monkey relative to the viewport
+    const monkeyPosition = monkey.getBoundingClientRect();
+    // Calculate the position of the mouse relative to the monkey
+    const mouseX =
+      event.clientX - (monkeyPosition.left + monkeyPosition.width / 2);
+    const mouseY =
+      event.clientY - (monkeyPosition.top + monkeyPosition.height / 2);
+    // Calculate the angle between the monkey and the mouse cursor
+    const angle = Math.atan2(mouseY, mouseX) * (180 / Math.PI);
+    // Calculate the angle between the trajectory preview and the horizontal axis
+    const trajectoryAngle = angle + 180;
+    // Set the trajectory preview line's position and rotation relative to the monkey
+    trajectoryPreview.style.left =
+      monkeyPosition.left + monkeyPosition.width / 2 + "px";
+    trajectoryPreview.style.top =
+      monkeyPosition.top + monkeyPosition.height / 2 + "px";
+    trajectoryPreview.style.transform = `rotate(${angle}deg)`;
+    // Set the rotation of the dart to be perpendicular to the trajectory preview
+    dart.style.transform = `rotate(${trajectoryAngle}deg)`;
+  });
+
+  // Event listener for mouse leaving the monkey
+  monkey.addEventListener("mouseleave", () => {
+    // Hide the trajectory preview line
+    trajectoryPreview.style.display = "none";
+  });
+
+  // Event listener for shooting dart when clicking on monkey
+  monkey.addEventListener("click", (event) => {
+    if (dartsShot < maxDarts && !dartIsVisible) {
+      // calculates the position and size of monkey relative to vp
+      const monkeyPosition = monkey.getBoundingClientRect();
+      // Calculates the position of the trajectory preview relative to the vp
+      const mouseX =
+        event.clientX - (monkeyPosition.left + monkeyPosition.width / 2);
+      const mouseY =
+        event.clientY - (monkeyPosition.top + monkeyPosition.height / 2);
+      const angle = Math.atan2(mouseY, mouseX) * (180 / Math.PI);
+      shootDart(angle);
+      dartsShot++; // Increment the number of darts shot
+    }
+  });
+
+  // Event listener for shooting dart when holding down the mouse button
+  monkey.addEventListener("mousedown", (event) => {
+    if (dartsShot < maxDarts && !dartIsVisible) {
+      // calculates the position and size of monkey relative to vp
+      const monkeyPosition = monkey.getBoundingClientRect();
+      // Calculates the position of the trajectory preview relative to the vp
+      const mouseX =
+        event.clientX - (monkeyPosition.left + monkeyPosition.width / 2);
+      const mouseY =
+        event.clientY - (monkeyPosition.top + monkeyPosition.height / 2);
+      const angle = Math.atan2(mouseY, mouseX) * (180 / Math.PI);
+      // shoot the dart right away
+      shootDart(angle);
+      dartsShot++; // Increment the number of darts shot
+      dartInterval = setInterval(() => {
+        if (dartsShot < maxDarts) {
+          shootDart(angle);
+          dartsShot++; // Increment the number of darts shot
+        } else {
+          clearInterval(dartInterval); // Stop dart throw loop if max darts reached
+        }
+      }, 100); // Start dart throw loop
+    }
+  });
+
+  // event listen for mouse up
+  monkey.addEventListener("mouseup", () => {
+    if (dartInterval) {
+      clearInterval(dartInterval);
+    }
+  });
+});
