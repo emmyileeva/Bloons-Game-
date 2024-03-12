@@ -1,4 +1,4 @@
-// // Initialize game
+// Initialize game
 document.addEventListener("DOMContentLoaded", function () {
   // Variables to store game state
   let currentScore = 0;
@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const monkey = document.getElementById("monkey");
   const dart = document.getElementById("dart");
   const trajectoryPreview = document.getElementById("trajectoryPreview");
+  const resetGameButton = document.getElementById("resetGame");
 
   // dart variables
   let dartIsVisible = false;
@@ -28,7 +29,6 @@ document.addEventListener("DOMContentLoaded", function () {
   function darts() {
     if (!dartIsVisible) {
       balloonsPopped++;
-      updateCurrentScore();
       checkLevelComplete();
     }
   }
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
   //   function to update current score
   function updateCurrentScore() {
     document.querySelector(".current-score").textContent =
-      "Current Score: " + currentScore + "balloons";
+      "Current Score: " + currentScore + " balloons";
   }
 
   //   function to update the balloons popped
@@ -44,17 +44,15 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelector(".balloons").textContent =
       "Balloons Popped: " + balloonsPopped + "/" + targetBalloons;
   }
-  // Select the button element by its ID
-  const resetGameButton = document.getElementById("resetGame");
 
-  // Add an event listener to the button
+  // event listener for the button
   resetGameButton.addEventListener("click", resetGame);
 
   // function to reset game
   function resetGame() {
     currentScore = 0;
-      balloonsPopped = 0;
-      dartsShot = 0;
+    balloonsPopped = 0;
+    dartsShot = 0;
     updateCurrentScore();
     updateBalloonsPopped();
     startGame();
@@ -119,7 +117,7 @@ document.addEventListener("DOMContentLoaded", function () {
         dartPower += 2; //adjust the dart power
       };
       moveDart();
-      dartInterval = setInterval(moveDart, 60);
+      dartInterval = setInterval(moveDart, 80);
       darts();
     }
   }
@@ -129,13 +127,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const balloons = document.querySelectorAll(".balloon");
 
     balloons.forEach((balloon) => {
-      const balloonPosition = balloon.getBoundingClientRect();
-      if (isColliding(dartPosition, balloonPosition)) {
-        balloon.style.visibility = "hidden"; // Hide the balloon
-        currentScore++; // Increment the score
-        updateCurrentScore(); // Update the score display
-        clearInterval(dartInterval); // Stop the dart movement
-        dartIsVisible = false; // Reset dart visibility
+      if (balloon.style.visibility !== "hidden") {
+        const balloonPosition = balloon.getBoundingClientRect();
+        if (isColliding(dartPosition, balloonPosition)) {
+          balloon.style.visibility = "hidden"; // Hide the balloon
+          currentScore++; // Increment the score
+          updateCurrentScore(); // Update the score display
+          clearInterval(dartInterval); // Stop the dart movement
+          dartIsVisible = false; // Reset dart visibility
+        }
       }
     });
   }
