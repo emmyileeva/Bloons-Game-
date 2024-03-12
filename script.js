@@ -3,11 +3,76 @@ let currentScore = 0;
 let balloonsPopped = 0;
 const targetBalloons = 12; // Update this if you want to adjust the target goal
 
+// cached DOM element
+const monkey = document.getElementById("monkey");
+const dart = document.getElementById("dart");
+const trajectoryPreview = document.getElementById("trajectoryPreview");
+
+// Initialize game
+document.addEventListener("DOMContentLoaded", startGame);
+
+// Event listener for mouse over the monkey
+monkey.addEventListener("mouseover", () => {
+  trajectoryPreview.style.display = "block";
+});
+
+// Event listener for mouse move over the monkey
+monkey.addEventListener("mousemove", (event) => {
+  const monkeyPosition = monkey.getBoundingClientRect();
+  const angle =
+    Math.atan2(
+      event.clientY - monkeyPosition.top - monkeyPosition.height / 2,
+      event.clientX - monkeyPosition.left - monkeyPosition.width / 2
+    ) *
+    (180 / Math.PI);
+  trajectoryPreview.style.transform = `rotate(${angle}deg)`;
+});
+
+// Event listener for mouse leave the monkey
+monkey.addEventListener("mouseleave", () => {
+  trajectoryPreview.style.display = "none";
+});
+
+// Event listener for shooting the dart on mouse click
+monkey.addEventListener("click", (event) => {
+  const angle =
+    Math.atan2(
+      event.clientY -
+        monkey.getBoundingClientRect().top -
+        monkey.getBoundingClientRect().height / 2,
+      event.clientX -
+        monkey.getBoundingClientRect().left -
+        monkey.getBoundingClientRect().width / 2
+    ) *
+    (180 / Math.PI);
+  shootDart(angle);
+});
+
+// Event listener for shooting the dart on mouse down
+monkey.addEventListener("mousedown", (event) => {
+  const angle =
+    Math.atan2(
+      event.clientY -
+        monkey.getBoundingClientRect().top -
+        monkey.getBoundingClientRect().height / 2,
+      event.clientX -
+        monkey.getBoundingClientRect().left -
+        monkey.getBoundingClientRect().width / 2
+    ) *
+    (180 / Math.PI);
+  shootDart(angle);
+});
+
+// Event listener for mouse up to stop shooting the dart
+monkey.addEventListener("mouseup", () => {
+  clearInterval(dartInterval);
+});
+
 // Function to start game
 function startGame() {
   currentScore = 0;
   balloonsPopped = 0;
-  updateCurrentScore();
+  updateScoreDisplays();
 }
 
 // Function to update score displays
@@ -36,104 +101,60 @@ function checkLevelComplete() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  const monkey = document.getElementById("monkey");
-  const dart = document.getElementById("dart");
-  const trajectoryPreview = document.getElementById("trajectoryPreview");
+// Function to shoot the dart
+function shootDart(angle) {
+  if (!dartIsVisible && dartsShot < maxDarts) {
+    dartIsVisible = true;
+    dart.style.visibility = "visible";
+    const dartPosition = dart.getBoundingClientRect();
+    const trajectoryPreviewPosition = trajectoryPreview.getBoundingClientRect();
+    const offsetLeft = trajectoryPreview.offsetLeft;
+    const offsetTop = trajectoryPreview.offsetTop;
+    const radianAngle = angle * (Math.PI / 180);
 
-  let dartIsVisible = false;
-  let dartInterval;
-  let dartsShot = 0;
-  const maxDarts = 5;
+    dart.style.left =
+      offsetLeft +
+      trajectoryPreviewPosition.width / 2 -
+      dartPosition.width / 2 +
+      "px";
+    dart.style.top =
+      offsetTop +
+      trajectoryPreviewPosition.height / 2 -
+      dartPosition.height / 2 +
+      "px";
 
-  monkey.addEventListener("mouseover", () => {
-    trajectoryPreview.style.display = "block";
-  });
-
-  monkey.addEventListener("mousemove", (event) => {
-    const monkeyPosition = monkey.getBoundingClientRect();
-    const mouseX =
-      event.clientX - monkeyPosition.left - monkeyPosition.width / 2;
-    const mouseY =
-      event.clientY - monkeyPosition.top - monkeyPosition.height / 2;
-    const angle = Math.atan2(mouseY, mouseX) * (180 / Math.PI);
-
-    trajectoryPreview.style.left =
-      monkeyPosition.left + monkeyPosition.width / 2 + "px";
-    trajectoryPreview.style.top =
-      monkeyPosition.top + monkeyPosition.height / 2 + "px";
-    trajectoryPreview.style.transform = `rotate(${angle}deg)`;
-  });
-
-  monkey.addEventListener("mouseleave", () => {
-    trajectoryPreview.style.display = "none";
-  });
-
-  function shootDart(angle) {
-    if (!dartIsVisible && dartsShot < maxDarts) {
-      dartIsVisible = true;
-      dart.style.visibility = "visible";
-      const monkeyPosition = monkey.getBoundingClientRect();
-      const dartPosition = dart.getBoundingClientRect();
+    let dartPower = 0;
+    dartInterval = setInterval(() => {
+      dartPower += 4;
+      const deltaX = dartPower * Math.cos(radianAngle);
+      const deltaY = dartPower * Math.sin(radianAngle);
       dart.style.left =
-        monkeyPosition.left +
-        monkeyPosition.width / 2 -
+        offsetLeft +
+        trajectoryPreviewPosition.width / 2 +
+        deltaX -
         dartPosition.width / 2 +
         "px";
-      dart.style.top = monkeyPosition.top + "px";
-
-      let dartPower = 0;
-      const radianAngle = angle * (Math.PI / 180);
-
-      dartInterval = setInterval(() => {
-        dartPower += 4;
-        const deltaX = dartPower * Math.cos(radianAngle);
-        const deltaY = dartPower * Math.sin(radianAngle);
-        dart.style.left =
-          monkeyPosition.left +
-          monkeyPosition.width / 2 +
-          deltaX -
-          dartPosition.width / 2 +
-          "px";
-        dart.style.top =
-          monkeyPosition.top +
-          monkeyPosition.height / 2 +
-          deltaY -
-          dartPosition.height / 2 +
-          "px";
-
-        if (
-          dartPower >=
-          Math.max(monkeyPosition.width, monkeyPosition.height) / 2
-        ) {
-          clearInterval(dartInterval);
-          dartIsVisible = false;
-          dart.style.visibility = "hidden";
-          dartsShot++;
-        }
-      }, 30);
-    }
+      dart.style.top =
+        offsetTop +
+        trajectoryPreviewPosition.height / 2 +
+        deltaY -
+        dartPosition.height / 2 +
+        "px";
+      if (
+        dartPower >=
+        Math.max(
+          trajectoryPreviewPosition.width,
+          trajectoryPreviewPosition.height
+        ) /
+          2
+      ) {
+        clearInterval(dartInterval);
+        dartIsVisible = false;
+        dart.style.visibility = "hidden";
+        dartsShot++;
+      }
+    }, 30);
   }
+}
 
-  monkey.addEventListener("click", (e) => {
-    const monkeyPosition = monkey.getBoundingClientRect();
-    const mouseX = e.clientX - monkeyPosition.left;
-    const mouseY = e.clientY - monkeyPosition.top;
-    const angle = Math.atan2(mouseY, mouseX) * (180 / Math.PI);
-    shootDart(angle);
-  });
 
-  monkey.addEventListener("mousedown", (mouseEvent) => {
-    const monkeyPosition = monkey.getBoundingClientRect();
-    const mouseX = mouseEvent.clientX - monkeyPosition.left;
-    const mouseY = mouseEvent.clientY - monkeyPosition.top;
-    const angle = Math.atan2(mouseY, mouseX) * (180 / Math.PI);
-    shootDart(angle);
-  });
-
-  monkey.addEventListener("mouseup", () => {
-    clearInterval(dartInterval);
-  });
-
-  startGame();
-});
