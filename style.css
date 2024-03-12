@@ -3,10 +3,6 @@ body {
     padding: 0;
     text-align: center;
     background-color: skyblue;
-    /* background-image: url('https://i.pinimg.com/564x/d6/72/92/d67292a7f73da0c769be979d1627d688.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center; */
 }
 
 .main-menu {
@@ -16,10 +12,6 @@ body {
 
 .game-header {
     background-color: rgba(0, 0, 0, 0.2);
-    background-image: url(''); 
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
     color: white;
     font-size: 30px;
     padding: 20px;
@@ -82,13 +74,8 @@ li {
     color: white;
 }
 
-.level-1 .game-board {
-    /* background-image: url('https://i.pinimg.com/564x/d6/72/92/d67292a7f73da0c769be979d1627d688.jpg'); */
-    /* background-image: url('https://st2.depositphotos.com/3759469/6798/v/450/depositphotos_67982979-stock-illustration-horizontally-seamless-game-background.jpg'); */
+ .game-board {
     background-color: wheat;
-    /* background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover; */
     margin: 0 auto;
     width: 80%;
     height: 500px;
@@ -130,8 +117,8 @@ li {
     top: 20%;
     left: 20%;
     background-color: red;
-    /* background-image: url('https://postimg.cc/Lhxg4KLG'); */
 }
+
 .balloon2 {
     top: 20%;
     left: 25%;
@@ -187,29 +174,6 @@ li {
     left: 45%;
     background-color: lightcoral;
 }
-
-/* before element to create a highlight and an after element to make the balloon string
-.balloon::before {
-    display: block;
-    width: 10px;
-    height: 10px;
-    background-color: white;
-    border-radius: 50%;
-    position: absolute;
-    top: 5px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.balloon::after {
-    display: block;
-    width: 2px;
-    height: 15px;
-    position: absolute;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-} */
 
 #monkey {
     width: 80px;
