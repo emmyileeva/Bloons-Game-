@@ -79,14 +79,21 @@ document.addEventListener("DOMContentLoaded", function () {
       dart.style.top = monkeyPosition.top + "px";
 
       const moveDart = () => {
-        const trajectoryPreviewPosition = trajectoryPreview.getBoundingClientRect();
+        const trajectoryPreviewPosition =
+          trajectoryPreview.getBoundingClientRect();
         // Calculate the angle between the monkey and the trajectory preview
-        const angle = Math.atan2(trajectoryPreviewPosition.top - monkeyPosition.top, trajectoryPreviewPosition.left - monkeyPosition.left) * (180 / Math.PI);
+        const angle =
+          Math.atan2(
+            trajectoryPreviewPosition.top - monkeyPosition.top,
+            trajectoryPreviewPosition.left - monkeyPosition.left
+          ) *
+          (180 / Math.PI);
         const radianAngle = angle * (Math.PI / 180); // Convert angle to radians
         const deltaXActual = dartPower * Math.cos(radianAngle); // calculate horizontal
         const deltaYActual = dartPower * Math.sin(radianAngle); // vertical
         dart.style.left = parseFloat(dart.style.left) + deltaXActual + "px";
         dart.style.top = parseFloat(dart.style.top) + deltaYActual + "px";
+        checkCollision(); // Check for collision with balloons
         // check to see if dart has reached the max distance
         if (
           dartPower >=
@@ -102,6 +109,32 @@ document.addEventListener("DOMContentLoaded", function () {
       dartInterval = setInterval(moveDart, 30);
       darts();
     }
+  }
+  // function to detect collision of dart and balloon
+  function checkCollision() {
+    const dartPosition = dart.getBoundingClientRect();
+    const balloons = document.querySelectorAll(".balloon");
+
+    balloons.forEach((balloon) => {
+      const balloonPosition = balloon.getBoundingClientRect();
+      if (isColliding(dartPosition, balloonPosition)) {
+        balloon.style.visibility = "hidden"; // Hide the balloon
+        currentScore++; // Increment the score
+        updateCurrentScore(); // Update the score display
+        clearInterval(dartInterval); // Stop the dart movement
+        dartIsVisible = false; // Reset dart visibility
+      }
+    });
+  }
+
+  // check for collision
+  function isColliding(element1, element2) {
+    return !(
+      element1.right < element2.left ||
+      element1.left > element2.right ||
+      element1.bottom < element2.top ||
+      element1.top > element2.bottom
+    );
   }
 
   // Event listener for mouse hover on the monkey
