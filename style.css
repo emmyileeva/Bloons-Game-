@@ -81,7 +81,7 @@ li {
     padding: 40px;
     border-radius: 10px;
     background-image: url("images/background.jpg");
-    background-size: cover;
+    background-size: contain;
 }
 
 .target {
@@ -206,7 +206,7 @@ li {
     background-size: cover;
     border-radius: 50%;
     top: 550px;
-    left: 300px;
+    left: 200px;
     position: absolute;
     cursor: pointer;
 }
