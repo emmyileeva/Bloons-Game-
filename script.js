@@ -208,29 +208,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Event listener for shooting dart when holding down the mouse button
-//   monkey.addEventListener("mousedown", (event) => {
-//     if (dartsShot < maxDarts && !dartIsVisible) {
-//       // calculates the position and size of monkey relative to vp
-//       const monkeyPosition = monkey.getBoundingClientRect();
-//       // Calculates the position of the trajectory preview relative to the vp
-//       const mouseX =
-//         event.clientX - (monkeyPosition.left + monkeyPosition.width / 2);
-//       const mouseY =
-//         event.clientY - (monkeyPosition.top + monkeyPosition.height / 2);
-//       const angle = Math.atan2(mouseY, mouseX) * (180 / Math.PI);
-//       // shoot the dart right away
-//       shootDart(angle);
-//       dartInterval = setInterval(() => {
-//         if (dartsShot < maxDarts) {
-//           shootDart(angle);
-//         } else {
-//           clearInterval(dartInterval); // Stop dart throw loop if max darts reached
-//         }
-//       }, 700); // Start dart throw loop
-//     }
-//   });
-
   // event listen for mouse up
   monkey.addEventListener("mouseup", () => {
     if (dartInterval) {
