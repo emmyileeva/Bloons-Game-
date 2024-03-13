@@ -74,13 +74,13 @@ li {
     color: white;
 }
 
- .game-board {
+.game-board {
     background-color: wheat;
     margin: 0 auto;
     width: 80%;
     height: 500px;
     padding: 40px;
-    border-radius: 10px; 
+    border-radius: 10px;
 }
 
 .target {
@@ -103,11 +103,11 @@ li {
     display: flex;
     justify-content: space-evenly;
     width: 100%;
-} 
+}
 
 .balloon {
-    width: 50px;
-    height: 60px;
+    width: 80px;
+    height: 90px;
     border-radius: 60% 60% 70% 70%;
     position: absolute;
     margin: 0 25%;
@@ -116,63 +116,86 @@ li {
 .balloon1 {
     top: 20%;
     left: 10%;
-    background-color: red;
+    background-image: url("images/balloonblue.png");
+    background-size: cover;
 }
 
 .balloon2 {
     top: 20%;
     left: 20%;
-    background-color: green;
+    background-image: url("images/balloongreen.png");
+    background-size: cover;
 }
+
 .balloon3 {
     top: 20%;
     left: 30%;
-    background-color: blue;
+    background-image: url("images/balloonorange.png");
+    background-size: cover;
 }
+
 .balloon4 {
     top: 20%;
     left: 40%;
-    background-color: yellow;
+    background-image: url("images/balloonpink.png");
+    background-size: cover;
 }
+
 .balloon5 {
     top: 30%;
     left: 10%;
-    background-color: purple;
+    background-image: url("images/balloonpurple.png");
+    background-size: cover;
 }
+
 .balloon6 {
     top: 30%;
     left: 20%;
-    background-color: pink;
+    background-image: url("images/balloonred.png");
+    background-size: cover;
 }
+
 .balloon7 {
     top: 30%;
     left: 30%;
-    background-color: turquoise;
+    background-image: url("images/balloonyellow.png");
+    background-size: cover;
 }
+
 .balloon8 {
     top: 30%;
     left: 40%;
-    background-color: lightblue;
+    background-image: url("images/balloonblue.png");
+    background-size: cover;
+    
 }
+
 .balloon9 {
     top: 40%;
     left: 10%;
-    background-color: orange;
+    background-image: url("images/balloonorange.png");
+    background-size: cover;
 }
+
 .balloon10 {
     top: 40%;
     left: 20%;
-    background-color: lightgreen;
+    background-image: url("images/balloonpink.png");
+    background-size: cover;
 }
+
 .balloon11 {
     top: 40%;
     left: 30%;
-    background-color: lightpink;
+    background-image: url("images/balloongreen.png");
+    background-size: cover;
 }
+
 .balloon12 {
     top: 40%;
     left: 40%;
-    background-color: lightcoral;
+    background-image: url("images/balloonpurple.png");
+    background-size: cover;
 }
 
 #monkey {
