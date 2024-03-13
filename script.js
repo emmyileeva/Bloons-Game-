@@ -18,18 +18,22 @@ document.addEventListener("DOMContentLoaded", function () {
   const maxDarts = 10;
   let dartPower = 0;
 
-  // function to start game
-  function startGame() {
-    currentScore = 0;
-    balloonsPopped = 0;
-    updateCurrentScore();
-  }
+  //   // function to start game
+  //   function startGame() {
+  //     currentScore = 0;
+  //       balloonsPopped = 0;
+  //       updateCurrentScore();
+  //       updateBalloonsPopped();
+  //   }
 
   // function for shooting darts
   function darts() {
     if (!dartIsVisible) {
       balloonsPopped++;
-      checkLevelComplete();
+      updateBalloonsPopped();
+      //   if (balloonsPopped === targetBalloons) {
+      //     checkLevelComplete();
+      //   }
     }
   }
 
@@ -55,7 +59,6 @@ document.addEventListener("DOMContentLoaded", function () {
     dartsShot = 0;
     updateCurrentScore();
     updateBalloonsPopped();
-    startGame();
     // Show all balloons again
     const balloons = document.querySelectorAll(".balloon");
     balloons.forEach((balloon) => {
@@ -65,18 +68,25 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelector(".balloons").textContent = "";
   }
 
-  // function to check if level was completed
+  //  function to check if level was completed
   function checkLevelComplete() {
-    if (balloonsPopped === targetBalloons) {
-      alert("Level Complete!");
+    if (currentScore === targetBalloons) {
+      setTimeout(function () {
+        alert("Level Complete!");
+        resetGame();
+      }, 500);
+        } else if (dartsShot >= maxDarts) {
+    setTimeout(function() {
+      alert("Try Again!");
       resetGame();
+    }, 500);
     }
   }
 
   // Function to shoot dart
   function shootDart() {
     dartPower = 0; // reset the dart power
-    if (!dartIsVisible) {
+    if (!dartIsVisible && dartsShot < maxDarts) {
       // check if dart is visible
       dartIsVisible = true;
       dart.style.visibility = "visible";
@@ -117,7 +127,7 @@ document.addEventListener("DOMContentLoaded", function () {
         dartPower += 2; //adjust the dart power
       };
       moveDart();
-      dartInterval = setInterval(moveDart, 80);
+      dartInterval = setInterval(moveDart, 60);
       darts();
     }
   }
@@ -133,6 +143,7 @@ document.addEventListener("DOMContentLoaded", function () {
           balloon.style.visibility = "hidden"; // Hide the balloon
           currentScore++; // Increment the score
           updateCurrentScore(); // Update the score display
+          checkLevelComplete();
           clearInterval(dartInterval); // Stop the dart movement
           dartIsVisible = false; // Reset dart visibility
         }
@@ -221,7 +232,7 @@ document.addEventListener("DOMContentLoaded", function () {
           dartsShot++; // Increment the number of darts shot
         } else {
           clearInterval(dartInterval); // Stop dart throw loop if max darts reached
-          dartInterval = undefined; // reset the dart interval
+          //   dartInterval = undefined; // reset the dart interval
         }
       }, 1000); // Start dart throw loop
     }
