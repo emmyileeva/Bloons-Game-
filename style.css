@@ -75,12 +75,13 @@ li {
 }
 
 .game-board {
-    background-color: wheat;
     margin: 0 auto;
     width: 80%;
     height: 500px;
     padding: 40px;
     border-radius: 10px;
+    background-image: url("images/background.jpg");
+    background-size: cover;
 }
 
 .target {
@@ -199,9 +200,10 @@ li {
 }
 
 #monkey {
-    width: 80px;
-    height: 100px;
-    background-color: brown;
+    width: 150px;
+    height: 150px;
+    background-image: url("images/monkey.png");
+    background-size: cover;
     border-radius: 50%;
     top: 550px;
     left: 300px;

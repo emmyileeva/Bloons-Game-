@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let dartIsVisible = false;
   let dartInterval;
   let dartsShot = 0;
-  const maxDarts = 10;
+  const maxDarts = 15;
   let dartPower = 0;
 
   // function for shooting darts
@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", function () {
         dartPower += 2; //adjust the dart power
       };
       moveDart();
-      dartInterval = setInterval(moveDart, 100);
+      dartInterval = setInterval(moveDart, 30);
       darts();
     }
   }
@@ -136,8 +136,7 @@ document.addEventListener("DOMContentLoaded", function () {
           updateCurrentScore(); // Update the score display
           checkLevelComplete();
           clearInterval(dartInterval); // Stop the dart movement
-            dartIsVisible = false; // Reset dart visibility
-            dart.style.visibility = "hidden"; // hide dart after balloon is popped 
+          dartIsVisible = false; // Reset dart visibility
         }
       }
     });
