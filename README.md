@@ -4,7 +4,7 @@
 
 ### **_Description_**
 
-####  In this game, players control a playful monkey equipped with dart-launching weapons, tasked with the mission of popping as many vibrant balloons, known as "bloons," as they can.
+#### In this game, players control a playful monkey equipped with dart-launching weapons, tasked with the mission of popping as many vibrant balloons, known as "bloons," as they can.
 
 ---
 
@@ -48,8 +48,19 @@
 
 ### **_Links_**
 
-#### [Github](https://github.com/emmyileeva) | [Wireframe](https://wireframe.cc/pfOEVh) 
+#### [Github](https://github.com/emmyileeva) | [Wireframe](https://wireframe.cc/pfOEVh)
 
 ---
 
 ### **_Acknowledgments_**
+
+dart and monkey design
+https://designer.microsoft.com/home?skiptoguestmode=true
+
+game background
+https://www.vecteezy.com/vector-art/20570946-meadow-panorama-3d-illustration-bright-landscape-of-green-valley-kids-background-colorful-cute-scene-with-spring-green-grass-trees-chamomile-flowers-blue-sky-sun-clouds-for-children-s-game
+
+https://www.silvergames.com/en/bowman#google_vignette
+
+balloon images
+https://www.gamedevmarket.net

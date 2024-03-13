@@ -47,7 +47,8 @@ document.addEventListener("DOMContentLoaded", function () {
     balloonsPopped = 0;
     dartsShot = 0;
     updateCurrentScore();
-    updateBalloonsPopped();
+      updateBalloonsPopped();
+      dart.style.visibility = "hidden";
     // Show all balloons again
     const balloons = document.querySelectorAll(".balloon");
     balloons.forEach((balloon) => {
@@ -136,7 +137,9 @@ document.addEventListener("DOMContentLoaded", function () {
           updateCurrentScore(); // Update the score display
           checkLevelComplete();
           clearInterval(dartInterval); // Stop the dart movement
-          dartIsVisible = false; // Reset dart visibility
+            dartIsVisible = false; // Reset dart visibility
+            
+            dart.style.visibility = "hidden";
         }
       }
     });
