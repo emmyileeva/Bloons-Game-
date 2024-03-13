@@ -72,8 +72,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
   // Function to shoot dart
-    function shootDart() {
-        console.log(dartsShot);
+  function shootDart() {
+    console.log(dartsShot);
     dartPower = 0; // reset the dart power
     if (dartsShot < maxDarts) {
       dartsShot++;
@@ -136,7 +136,8 @@ document.addEventListener("DOMContentLoaded", function () {
           updateCurrentScore(); // Update the score display
           checkLevelComplete();
           clearInterval(dartInterval); // Stop the dart movement
-          dartIsVisible = false; // Reset dart visibility
+            dartIsVisible = false; // Reset dart visibility
+            dart.style.visibility = "hidden"; // hide dart after balloon is popped 
         }
       }
     });
