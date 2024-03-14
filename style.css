@@ -99,15 +99,14 @@ li {
 
 .target {
     position: absolute;
-    bottom: 35px;
+    bottom: 30px;
     left: 60%;
 }
 
 .current-score {
     position: absolute;
-    bottom: 35px;
+    bottom: 30px;
     left: 15%;
-    right: auto;
 }
 
 .buttons-level-1 {
