@@ -11,7 +11,7 @@
 ### **_Instructions to play_**
 
 - Utilize the mouse to precisely aim the darts
-- Click and hold to adjust the throwing power
+- Click to throw dart
 - Aim to pop as many balloons as possible using your darts and reach the target to progress to the next level
 - Bear in mind that you're limited to a specific number of darts per level
 - Darts are not carried over to subsequent levels
@@ -64,3 +64,5 @@ https://www.silvergames.com/en/bowman#google_vignette
 
 balloon images
 https://www.gamedevmarket.net
+
+https://www.rapidtables.com/web/color/RGB_Color.html

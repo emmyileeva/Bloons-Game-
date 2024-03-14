@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let dartIsVisible = false;
   let dartInterval;
   let dartsShot = 0;
-  const maxDarts = 15;
+  const maxDarts = 10;
   let dartPower = 0;
 
   // function for shooting darts
@@ -47,8 +47,8 @@ document.addEventListener("DOMContentLoaded", function () {
     balloonsPopped = 0;
     dartsShot = 0;
     updateCurrentScore();
-      updateBalloonsPopped();
-      dart.style.visibility = "hidden";
+    updateBalloonsPopped();
+    dart.style.visibility = "hidden";
     // Show all balloons again
     const balloons = document.querySelectorAll(".balloon");
     balloons.forEach((balloon) => {
@@ -74,10 +74,10 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   // Function to shoot dart
   function shootDart() {
-    console.log(dartsShot);
     dartPower = 0; // reset the dart power
     if (dartsShot < maxDarts) {
       dartsShot++;
+      checkLevelComplete();
       // check if dart is visible
       dartIsVisible = true;
       dart.style.visibility = "visible";
@@ -97,12 +97,11 @@ document.addEventListener("DOMContentLoaded", function () {
         Math.atan2(
           trajectoryPreviewPosition.top - monkeyPosition.top,
           trajectoryPreviewPosition.left - monkeyPosition.left
-        ) *
-        (180 / Math.PI);
+        ) * Math.PI;
       const moveDart = () => {
-        const radianAngle = angle * (Math.PI / 180); // Convert angle to radians
-        const deltaXActual = dartPower * Math.cos(radianAngle); // calculate horizontal
-        const deltaYActual = dartPower * Math.sin(radianAngle); // vertical
+        // const radianAngle = angle * (Math.PI / 180); // Convert angle to radians
+        const deltaXActual = dartPower * Math.cos(angle); // calculate horizontal
+        const deltaYActual = dartPower * Math.sin(angle); // vertical
         dart.style.left = parseFloat(dart.style.left) + deltaXActual + "px";
         dart.style.top = parseFloat(dart.style.top) + deltaYActual + "px";
         checkCollision(); // Check for collision with balloons
@@ -137,9 +136,9 @@ document.addEventListener("DOMContentLoaded", function () {
           updateCurrentScore(); // Update the score display
           checkLevelComplete();
           clearInterval(dartInterval); // Stop the dart movement
-            dartIsVisible = false; // Reset dart visibility
-            
-            dart.style.visibility = "hidden";
+          dartIsVisible = false; // Reset dart visibility
+
+          dart.style.visibility = "hidden";
         }
       }
     });

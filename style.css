@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 0;
     text-align: center;
-    background-color: skyblue;
+    background-color: #64BBFD;
 }
 
 .main-menu {
@@ -12,10 +12,10 @@ body {
 
 .game-header {
     color: white;
-    font-size: 30px;
+    font-size: 40px;
     padding: 40px;
     border-radius: 10px;
-    background-image: url("images/header.png");
+    background-image: url("images/background2.png");
     background-size: cover;
 }
 
@@ -54,15 +54,19 @@ button:hover {
 
 ul {
     list-style-type: disc;
+    list-style-position: inside;
     margin-left: auto;
     margin-right: auto;
     width: 40%;
+    padding-left: 0;
+    
 }
 
 li {
     font-size: 20px;
     color: white;
     margin-bottom: 10px;
+    
 }
 
 .main-menu-button1 {
@@ -82,26 +86,27 @@ li {
     padding: 40px;
     border-radius: 20px;
     background-image: url("images/background.jpg");
-    background-size: 100% 100%;
+    background-size: 100% 70%;
     background-position: center;
     background-attachment: fixed;
 }
 
 .target {
     position: absolute;
-    bottom: 0;
-    left: 50%;
+    bottom: 35px;
+    left: 60%;
 }
 
 .current-score {
     position: absolute;
-    bottom: 0;
-    left: 10%;
+    bottom: 35px;
+    left: 15%;
+    right: auto;
 }
 
 .buttons-level-1 {
     position: absolute;
-    top: 90%;
+    top: 88%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
@@ -171,7 +176,7 @@ li {
     left: 40%;
     background-image: url("images/balloonblue.png");
     background-size: cover;
-    
+
 }
 
 .balloon9 {
@@ -208,8 +213,8 @@ li {
     background-image: url("images/monkey.png");
     background-size: cover;
     border-radius: 50%;
-    top: 550px;
-    left: 250px;
+    top: 580px;
+    left: 200px;
     position: absolute;
     cursor: pointer;
 }
@@ -234,5 +239,4 @@ li {
     transform-origin: top left;
     display: none;
 }
-
 
