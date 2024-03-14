@@ -238,10 +238,24 @@ li {
 
 #trajectoryPreview {
     position: absolute;
-    background-color: red;
+    background-color: #83BCFD;
     width: 1px;
     height: 100px;
     transform-origin: top left;
     display: none;
 }
 
+/* pseudo-elements to represent the arrowheads */
+#trajectoryPreview::before,
+#trajectoryPreview::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: -10px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px;
+    border-color: transparent transparent #83BCFD transparent;
+    transform: rotate(180deg);
+}
