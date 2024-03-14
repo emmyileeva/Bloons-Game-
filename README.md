@@ -62,7 +62,9 @@ https://www.vecteezy.com/vector-art/20570946-meadow-panorama-3d-illustration-bri
 
 https://www.silvergames.com/en/bowman#google_vignette
 
-balloon images
+balloon images/ font
 https://www.gamedevmarket.net
 
 https://www.rapidtables.com/web/color/RGB_Color.html
+
+https://fonts.google.com/selection/embed

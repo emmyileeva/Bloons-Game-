@@ -2,7 +2,10 @@ body {
     margin: 0;
     padding: 0;
     text-align: center;
-    background-color: #64BBFD;
+    background-color: #90CFFF;
+    font-family: "Denk One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .main-menu {
@@ -34,6 +37,9 @@ button {
     border: none;
     cursor: pointer;
     border-radius: 60px;
+    font-family: "Denk One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 button:hover {
@@ -83,7 +89,7 @@ li {
     margin: 0 auto;
     width: 80%;
     height: 500px;
-    padding: 40px;
+    padding: 30px;
     border-radius: 20px;
     background-image: url("images/background.jpg");
     background-size: 100% 70%;
