@@ -10,11 +10,13 @@
 
 ### **_Instructions to play_**
 
-- Utilize the mouse to precisely aim the darts
-- Click to throw dart
-- Aim to pop as many balloons as possible using your darts and reach the target to progress to the next level
-- Bear in mind that you're limited to a specific number of darts per level
-- Darts are not carried over to subsequent levels
+- Use the mouse to hover over the monkey and accurately aim the darts.
+- Click to release the dart.
+- Your objective is to pop as many balloons as possible using your limited supply 
+ of darts and reach the target to advance to the next level.
+- Keep in mind that you have a specific number of darts for each level, and any 
+ unused darts will not carry over to the next level.
+
 
 ---
 
@@ -68,3 +70,5 @@ https://www.gamedevmarket.net
 https://www.rapidtables.com/web/color/RGB_Color.html
 
 https://fonts.google.com/selection/embed
+
+https://stackoverflow.com/questions/7880053/proper-way-to-position-before-pseudo-elements

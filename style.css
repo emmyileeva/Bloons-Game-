@@ -259,3 +259,10 @@ li {
     border-color: transparent transparent #83BCFD transparent;
     transform: rotate(180deg);
 }
+
+.high-scores {
+    margin-top: 100px;
+    text-align: center;
+    font-size: 60px;
+    color: white;
+}

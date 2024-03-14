@@ -99,7 +99,6 @@ document.addEventListener("DOMContentLoaded", function () {
           trajectoryPreviewPosition.left - monkeyPosition.left
         ) * Math.PI;
       const moveDart = () => {
-        // const radianAngle = angle * (Math.PI / 180); // Convert angle to radians
         const deltaXActual = dartPower * Math.cos(angle); // calculate horizontal
         const deltaYActual = dartPower * Math.sin(angle); // vertical
         dart.style.left = parseFloat(dart.style.left) + deltaXActual + "px";
