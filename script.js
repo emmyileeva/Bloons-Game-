@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let currentScore = 0;
   let balloonsPopped = 0;
   const targetBalloons = 12;
+  let totalDarts = 10; // total darts available for user
 
   // cached DOM element
   const monkey = document.getElementById("monkey");
@@ -32,7 +33,13 @@ document.addEventListener("DOMContentLoaded", function () {
       "Current Score: " + currentScore + " balloons";
   }
 
-  //   function to update the balloons popped
+  // function to update total darts available
+  function UpdateTotalDarts() {
+    document.querySelector(".totalDarts").textContent =
+      "Total Darts Available: " + totalDarts;
+  }
+
+  // function to update the balloons popped
   function updateBalloonsPopped() {
     document.querySelector(".balloons").textContent =
       "Balloons Popped: " + balloonsPopped + "/" + targetBalloons;
@@ -46,8 +53,10 @@ document.addEventListener("DOMContentLoaded", function () {
     currentScore = 0;
     balloonsPopped = 0;
     dartsShot = 0;
+    totalDarts = 10;
     updateCurrentScore();
     updateBalloonsPopped();
+    UpdateTotalDarts();
     dart.style.visibility = "hidden";
     // Show all balloons again
     const balloons = document.querySelectorAll(".balloon");
@@ -77,7 +86,9 @@ document.addEventListener("DOMContentLoaded", function () {
     dartPower = 0; // reset the dart power
     if (dartsShot < maxDarts) {
       dartsShot++;
+      totalDarts--; // decrease total darts available
       checkLevelComplete();
+      UpdateTotalDarts();
       // check if dart is visible
       dartIsVisible = true;
       dart.style.visibility = "visible";
@@ -136,7 +147,6 @@ document.addEventListener("DOMContentLoaded", function () {
           checkLevelComplete();
           clearInterval(dartInterval); // Stop the dart movement
           dartIsVisible = false; // Reset dart visibility
-
           dart.style.visibility = "hidden";
         }
       }
