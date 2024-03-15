@@ -22,7 +22,6 @@ body {
     background-size: 100% 85%;
     background-position: center;
     background-attachment: fixed;
-    
 }
 
 .buttons {
@@ -101,19 +100,19 @@ li {
 
 .target {
     position: absolute;
-    bottom: 30px;
-    left: 60%;
+    top: 80%;
+    left: 73%;
 }
 
 .current-score {
     position: absolute;
-    bottom: 30px;
-    left: 15%;
+    top: 80%;
+    left: 9%;
 }
 
 .buttons-level-1 {
     position: absolute;
-    top: 88%;
+    bottom: 0%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
@@ -266,5 +265,13 @@ li {
     margin-top: 100px;
     text-align: center;
     font-size: 60px;
+    color: white;
+}
+
+.totalDarts {
+    position: absolute;
+    top: 80%;
+    left: 41%;
+    font-size: 30px;
     color: white;
 }
