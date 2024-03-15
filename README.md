@@ -4,7 +4,7 @@
 
 ### **_Description_**
 
-#### In this game, players control a playful monkey equipped with dart-launching weapons, tasked with the mission of popping as many vibrant balloons, known as "bloons," as they can.
+#### In this game, players control a playful monkey equipped with dart-launching weapons, tasked with the mission of popping as many vibrant balloons, known as "bloons," as they can. To play this game go to this link https://bloons-game.surge.sh/index.html!
 
 ---
 
@@ -32,7 +32,7 @@
 
 ##### Main Menu
 
-![](images/mainMenuscreenshot.png)
+![](images/mainmenuscreenshot.png)
 
 ##### Level 1 preview
 

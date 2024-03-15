@@ -69,12 +69,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
   //  function to check if level was completed
   function checkLevelComplete() {
+    console.log("checkLevelComplete");
     if (currentScore === targetBalloons) {
       setTimeout(function () {
         alert("Level Complete!");
         resetGame();
       }, 1000);
-    } else if (dartsShot >= maxDarts && currentScore < targetBalloons) {
+    } else if (
+      dartsShot >= maxDarts &&
+      currentScore < targetBalloons) {
       setTimeout(function () {
         alert("Try Again!");
         resetGame();
@@ -87,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (dartsShot < maxDarts) {
       dartsShot++;
       totalDarts--; // decrease total darts available
-      checkLevelComplete();
+      // checkLevelComplete();
       UpdateTotalDarts();
       // check if dart is visible
       dartIsVisible = true;
@@ -144,7 +147,7 @@ document.addEventListener("DOMContentLoaded", function () {
           balloon.style.visibility = "hidden"; // Hide the balloon
           currentScore++; // Increment the score
           updateCurrentScore(); // Update the score display
-          checkLevelComplete();
+          checkLevelComplete(); // check if level was complete
           clearInterval(dartInterval); // Stop the dart movement
           dartIsVisible = false; // Reset dart visibility
           dart.style.visibility = "hidden";
@@ -210,6 +213,7 @@ document.addEventListener("DOMContentLoaded", function () {
         event.clientX - (monkeyPosition.left + monkeyPosition.width / 2);
       const mouseY =
         event.clientY - (monkeyPosition.top + monkeyPosition.height / 2);
+      // Calculate the angle between the monkey and the mouse cursor
       const angle = Math.atan2(mouseY, mouseX) * (180 / Math.PI);
       shootDart(angle);
       // Calculate trajectory angle and set it once when the dart is shot
