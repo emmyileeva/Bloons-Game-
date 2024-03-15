@@ -91,6 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // check if dart is visible
       dartIsVisible = true;
       dart.style.visibility = "visible";
+      // Calculate the position of the monkey and dart relative to the viewport
       const monkeyPosition = monkey.getBoundingClientRect();
       const dartPosition = dart.getBoundingClientRect();
       dart.style.left =
@@ -109,8 +110,8 @@ document.addEventListener("DOMContentLoaded", function () {
           trajectoryPreviewPosition.left - monkeyPosition.left
         ) * Math.PI;
       const moveDart = () => {
-        const deltaXActual = dartPower * Math.cos(angle); // calculate horizontal
-        const deltaYActual = dartPower * Math.sin(angle); // vertical
+        const deltaXActual = dartPower * Math.cos(angle); // calculate horizontal relative to dart
+        const deltaYActual = dartPower * Math.sin(angle); // calculate vertical relative to dart 
         dart.style.left = parseFloat(dart.style.left) + deltaXActual + "px";
         dart.style.top = parseFloat(dart.style.top) + deltaYActual + "px";
         checkCollision(); // Check for collision with balloons
