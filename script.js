@@ -69,15 +69,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
   //  function to check if level was completed
   function checkLevelComplete() {
-    console.log("checkLevelComplete");
     if (currentScore === targetBalloons) {
       setTimeout(function () {
         alert("Level Complete!");
         resetGame();
       }, 1000);
-    } else if (
-      dartsShot >= maxDarts &&
-      currentScore < targetBalloons) {
+    } else if (dartsShot >= maxDarts && currentScore < targetBalloons) {
       setTimeout(function () {
         alert("Try Again!");
         resetGame();
