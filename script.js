@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  //   function to update current score
+  //  function to update current score
   function updateCurrentScore() {
     document.querySelector(".current-score").textContent =
       "Current Score: " + currentScore + " balloons";
@@ -87,7 +87,6 @@ document.addEventListener("DOMContentLoaded", function () {
     if (dartsShot < maxDarts) {
       dartsShot++;
       totalDarts--; // decrease total darts available
-      // checkLevelComplete();
       UpdateTotalDarts();
       // check if dart is visible
       dartIsVisible = true;
@@ -181,7 +180,7 @@ document.addEventListener("DOMContentLoaded", function () {
         event.clientY - (monkeyPosition.top + monkeyPosition.height / 2);
       // Calculate the angle between the monkey and the mouse cursor
       const angle = Math.atan2(mouseY, mouseX) * (180 / Math.PI);
-      // // Calculate the angle between the trajectory preview and the horizontal axis
+      // Calculate the angle between the trajectory preview and the horizontal axis
       const trajectoryAngle = angle + 180;
       // Set the trajectory preview line's position and rotation relative to the monkey
       trajectoryPreview.style.left =
@@ -205,7 +204,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (dartsShot < maxDarts && !dartIsVisible) {
       // calculates the position and size of monkey relative to vp
       const monkeyPosition = monkey.getBoundingClientRect();
-      // Calculates the position of the trajectory preview relative to the vp
+      // Calculate the position of the mouse relative to the monkey
       const mouseX =
         event.clientX - (monkeyPosition.left + monkeyPosition.width / 2);
       const mouseY =
@@ -213,9 +212,10 @@ document.addEventListener("DOMContentLoaded", function () {
       // Calculate the angle between the monkey and the mouse cursor
       const angle = Math.atan2(mouseY, mouseX) * (180 / Math.PI);
       shootDart(angle);
-      // Calculate trajectory angle and set it once when the dart is shot
+      // Calculate the angle between the trajectory preview and the horizontal axis
       const trajectoryAngle = angle + 180;
       trajectoryPreview.style.transform = `rotate(${angle}deg)`;
+      // Set the rotation of the dart to be perpendicular to the trajectory preview
       dart.style.transform = `rotate(${trajectoryAngle}deg)`;
     }
   });

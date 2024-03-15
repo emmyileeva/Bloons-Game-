@@ -32,7 +32,7 @@
 
 ##### Main Menu
 
-![](images/mainmenuscreenshot.png)
+![](images/MainMenuScreenshot.png)
 
 ##### Level 1 preview
 
