@@ -19,7 +19,10 @@ body {
     padding: 40px;
     border-radius: 10px;
     background-image: url("images/background2.png");
-    background-size: cover;
+    background-size: 100% 85%;
+    background-position: center;
+    background-attachment: fixed;
+    
 }
 
 .buttons {
@@ -35,6 +38,7 @@ button {
     font-size: 30px;
     color: white;
     border: none;
+    background-color: #FC9B3B;
     cursor: pointer;
     border-radius: 60px;
     font-family: "Denk One", sans-serif;
@@ -43,7 +47,7 @@ button {
 }
 
 button:hover {
-    background-color: #CCFFCC;
+    background-color: #FFBA75;
 }
 
 .buttons a {
@@ -65,14 +69,12 @@ ul {
     margin-right: auto;
     width: 40%;
     padding-left: 0;
-    
 }
 
 li {
     font-size: 20px;
     color: white;
     margin-bottom: 10px;
-    
 }
 
 .main-menu-button1 {
